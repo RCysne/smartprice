@@ -42,24 +42,3 @@ export default function Forms() {
     </div>
   )
 }
-
-
-
-
-
-
-{/*<div className="container" align="center"> 
-
-<TextField data-input className="marca" label="Marca" fullWidth type="text" required>Marca</TextField>
-
-      <TextField data-input className="modelo" label="Modelo" fullWidth type="text" required>Modelo</TextField>
-
-      <TextField data-input className="ano" label="Ano" fullWidth type="text" required>Ano</TextField>
-
-      <TextField data-input className="versao" label="Versão" fullWidth type="text" required>Versão</TextField>
-
-
-      <TextField data-input className="km" label="Km" fullWidth type="text">Km</TextField>
-
-      <Button fullWidth>Pesquisar</Button>
-     </div> */}
