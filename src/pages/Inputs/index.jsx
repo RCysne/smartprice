@@ -9,6 +9,8 @@ const API_URL = 'http://188.166.29.71/index.php/pricing';
 export default function Forms() {
   const [suggestedPrice, setSuggestedPrice] = React.useState(0);
   const [fipe, setFipe] = React.useState(0);
+  const [olxOffers, setOlxOffers] = React.useState([]);
+  const [icarrosOffers, setIcarrosOffers] = React.useState([]);
 
   const [make, setMake] = React.useState('');
   const [model, setModel] = React.useState('');
@@ -29,6 +31,8 @@ export default function Forms() {
 
           setFipe(response.fipe.price);
           setSuggestedPrice(response.suggestedPrice);
+          setOlxOffers(response.olx);
+          setIcarrosOffers(response.icarros);
         });
   }
 
@@ -78,6 +82,54 @@ export default function Forms() {
         <p>
           <strong>Preço FIPE:</strong> R$ <span>{fipe}</span>
         </p>
+
+        <table border="1" width="100%" style={{marginTop: 50}}>
+          <thead>
+            <tr>
+              <th colspan="4">OLX</th>
+            </tr>
+            <tr>
+              <th>Região</th>
+              <th>Média</th>
+              <th>Máximo</th>
+              <th>Mínimo</th>
+            </tr>
+          </thead>
+          <tbody>
+          {olxOffers.map(offer => (
+              <tr>
+                <td>R$ {offer.city_region}</td>
+                <td>R$ {offer.average}</td>
+                <td>R$ {offer.min}</td>
+                <td>R$ {offer.max}</td>
+              </tr>
+          ))}
+          </tbody>
+        </table>
+
+        <table border="1" width="100%" style={{marginTop: 50}}>
+          <thead>
+            <tr>
+              <th colspan="4">iCarros</th>
+            </tr>
+            <tr>
+              <th>Região</th>
+              <th>Média</th>
+              <th>Máximo</th>
+              <th>Mínimo</th>
+            </tr>
+          </thead>
+          <tbody>
+          {icarrosOffers.map(offer => (
+              <tr>
+                <td>{offer.state_region}</td>
+                <td>{offer.average}</td>
+                <td>{offer.min}</td>
+                <td>{offer.max}</td>
+              </tr>
+          ))}
+          </tbody>
+        </table>
       </div>
     </div>
   )
