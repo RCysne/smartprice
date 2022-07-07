@@ -1,9 +1,10 @@
 import React from 'react'
 import { Button } from "@mui/material";
 import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table';
 import './CSS/inputs.css';
 
-//temporario, depois isolar em outro lugar
+//temporário, depois isolar em outro lugar
 const API_URL = 'http://188.166.29.71/index.php/pricing';
 
 export default function Forms() {
@@ -21,31 +22,30 @@ export default function Forms() {
   const findVehicle = (event) => {
     event.preventDefault();
 
-    fetch(API_URL+`?brand=${make}&model=${model}&yearModel=${yearModel}&version=${version}&km=${km}`)
-        .then(response => response.json())
-        .then(response => {
-          if (!response.fipe) {
-            alert('Veiculo nao encontrado');
-            return;
-          }
+    fetch(API_URL + `?brand=${make}&model=${model}&yearModel=${yearModel}&version=${version}&km=${km}`)
+      .then(response => response.json())
+      .then(response => {
+        if (!response.fipe) {
+          alert('Veiculo nao encontrado');
+          return;
+        }
 
-          setFipe(response.fipe.price);
-          setSuggestedPrice(response.suggestedPrice);
-          setOlxOffers(response.olx);
-          setIcarrosOffers(response.icarros);
-        });
+        setFipe(response.fipe.price);
+        setSuggestedPrice(response.suggestedPrice);
+        setOlxOffers(response.olx);
+        setIcarrosOffers(response.icarros);
+      });
   }
 
 
   return (
-
 
     <div className="body">
       <Form className="container" onSubmit={findVehicle}>
         <h1>SmartPrice</h1>
         <Form.Group data-form controlId="formBasicEmail">
           <Form.Label data-label>Marca *</Form.Label>
-          <Form.Control value={make} onChange={(event) => setMake(event.target.value)}  data-input type="text" placeholder="Marca" required />
+          <Form.Control value={make} onChange={(event) => setMake(event.target.value)} data-input type="text" placeholder="Marca" required />
 
           <Form.Label data-label>Modelo *</Form.Label>
           <Form.Control value={model} onChange={(event) => setModel(event.target.value)} data-input type="text" placeholder="Modelo" required />
@@ -69,12 +69,15 @@ export default function Forms() {
             Enviar
           </Button>
         </div>
-
       </Form>
+
+
+      {/* ============================= RESULT ==================================== */}
+
 
       <div className="result">
         <h2>Resultado</h2>
-        <hr/>
+        <hr />
 
         <p>
           <strong>Preço Sugerido:</strong> R$ <span>{suggestedPrice}</span>
@@ -83,10 +86,10 @@ export default function Forms() {
           <strong>Preço FIPE:</strong> R$ <span>{fipe}</span>
         </p>
 
-        <table border="1" width="100%" style={{marginTop: 50}}>
+        <table style={{ marginTop: 20 }}>
           <thead>
             <tr>
-              <th colspan="4">OLX</th>
+              <th colSpan={4}>OLX</th>
             </tr>
             <tr>
               <th>Região</th>
@@ -96,21 +99,21 @@ export default function Forms() {
             </tr>
           </thead>
           <tbody>
-          {olxOffers.map(offer => (
+            {olxOffers.map(offer => (
               <tr>
-                <td>R$ {offer.city_region}</td>
+                <td>{offer.city_region}</td>
                 <td>R$ {offer.average}</td>
                 <td>R$ {offer.min}</td>
                 <td>R$ {offer.max}</td>
               </tr>
-          ))}
+            ))}
           </tbody>
         </table>
 
-        <table border="1" width="100%" style={{marginTop: 50}}>
+        <table style={{ marginTop: 20 }}>
           <thead>
             <tr>
-              <th colspan="4">iCarros</th>
+              <th colSpan={4}>iCarros</th>
             </tr>
             <tr>
               <th>Região</th>
@@ -120,14 +123,14 @@ export default function Forms() {
             </tr>
           </thead>
           <tbody>
-          {icarrosOffers.map(offer => (
+            {icarrosOffers.map(offer => (
               <tr>
                 <td>{offer.state_region}</td>
                 <td>{offer.average}</td>
                 <td>{offer.min}</td>
                 <td>{offer.max}</td>
               </tr>
-          ))}
+            ))}
           </tbody>
         </table>
       </div>

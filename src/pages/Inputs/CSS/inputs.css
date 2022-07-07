@@ -68,6 +68,8 @@ Button {
   height: 3rem;
 }
 
+/* ---------------------------- RESULT ------------------------------------ */
+
 .result {
   background-color: #FFF;
   width: 100%;
@@ -75,13 +77,24 @@ Button {
 
   border-radius: 1rem;
   text-align: center;
-  padding: 30px;
-}
-
-hr {
-  color: rgba(200, 200, 200, 0.2);
+  padding: 10px;
+  font-size: .8rem;
 }
 
 .result h2, hr {
   margin-bottom: 30px;
+}
+
+table, td, th {
+  text-align: left;
+  padding-bottom: .7rem;
+  padding-left: .5rem;
+  border: 1px solid rgb(92, 92, 92);
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.result p {
+  text-align: left;
+  margin-bottom: 1rem;
 }
