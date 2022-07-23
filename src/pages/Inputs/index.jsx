@@ -1,7 +1,6 @@
 import React from 'react'
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import Form from 'react-bootstrap/Form';
-import Table from 'react-bootstrap/Table';
 import './CSS/inputs.css';
 
 //temporário, depois isolar em outro lugar
@@ -86,7 +85,7 @@ export default function Forms() {
           <strong>Preço FIPE:</strong> R$ <span>{fipe}</span>
         </p>
 
-        <table style={{ marginTop: 20 }}>
+        <table striped bordered hover style={{ marginTop: 20 }}>
           <thead>
             <tr>
               <th colSpan={4}>OLX</th>
